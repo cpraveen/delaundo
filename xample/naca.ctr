@@ -41,11 +41,11 @@
  MCYCSWap:
        20 User
  OUTFILe:
-       ./naca.dat
+       ./naca.dpl
  OUTTYPe:
       t 
  OUTFORmat:
-       set2d
+      d
  DOLOGFile:
        T, User.
  LOGFILe:
