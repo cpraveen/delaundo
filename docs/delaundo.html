@@ -1,0 +1,161 @@
+<html><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.05 [en] (X11; I; IRIX64 6.5 IP30) [Netscape]">
+   <meta name="Author" content="Jens-Dominik M&quot;uller">
+   <meta name="Keywords" content="Delaunay triangulation, multi-grid"></head>
+<body text="#000000" bgcolor="#ffffff" link="#0000ee" vlink="#551a8b" alink="#ff0000">
+
+<center>
+<h1>
+<b>Grid Generation Tools</b></h1></center>
+<font size="+1">Unstructured grid generation can mesh any geometry. One of
+the design criteria for the two tools presented on this page was <i>minimum
+user input</i>, ie. the user should have as little information to specify
+as possible. This has been acheived on two levels: the geometry is specified
+by defining a curve analytically or discretely and by a few points with
+grid spacing along the segments. The grid can then be created using just
+these surface points.</font>
+<h3>
+<a name="ipol"></a></h3>
+
+<center>
+<h2>
+Curve Discretization with <tt>ipol</tt></h2></center>
+I<font size="+1">pol allows to distribute points on analytic or discrete
+curves by specifiying point distances at various locations along the curve.
+A script language takes the curve parameters and program options. Input
+and output of the discretized point chains on the curves are in a .pts
+format as used by the triangular mesher.</font>
+
+<p><img src="delaundo_files/pts0012.gif" hspace="20" height="111" width="572" align="middle">
+
+</p><p><font size="+1">Ipol allows to:</font>
+</p><ul>
+<li>
+<font size="+1">read any discretized geometry in a .pts format,</font></li>
+
+<li>
+<font size="+1">has a library of analytic shapes such as lines, circles,
+arcs, polynomials, naca 4 digit airfoils, etc.,</font></li>
+
+<li>
+<font size="+1">scaling, rotation and translation transformations can be
+applied to each segment of the geometry,</font></li>
+
+<li>
+<font size="+1">point density can be specified arbitrarily at any locations
+alongthe surface,</font></li>
+
+<li>
+<font size="+1">global and local scaling factors can be applied to adjust
+the mesh size,</font></li>
+
+<li>
+<font size="+1">the point distribution is smoothend by a Gauss-Seidel relaxation,</font></li>
+
+<li>
+<font size="+1">output is in a .pts format compatible with <a href="#delaundo">delaundo,</a></font></li>
+
+<li>
+<font size="+1">online help is available.</font></li>
+</ul>
+<font size="+1">Ipol is in the public domain, the latest version 3.0 can
+be obtained <a href="http://www.cerfacs.fr/%7Emuller/ipol.tar.gz">here</a>.</font>
+
+<p><a name="delaundo"></a>
+</p><center>
+<h3>
+Delaunay Triangulation with <tt><font size="+2">delaundo</font></tt></h3></center>
+<font size="+1">Delaundo creates triangular grids based on the Frontal Delaunay
+Method (Frod). First the set of discretized curves that describe the boundary
+is triangulated. This initial mesh is suitable for interpolation of a local
+mesh size throughout the domain after a few modifications in the connections
+are made by the algorithm. New internal vertices are then created on frontal
+edges between well-shaped and ill-shaped triangles such that a new triangle
+with the desired size and a good shape will result.</font>
+
+<p><font size="+1">Thus, the algorithm is similar to the various Delaunay
+methods in that the resulting triangulation observes a circum-circle criterion.
+It is also akin to Advancing Front methods in that new vertices are introduced
+in layers on the boundaries in a very regular fashion. The regularity of
+the point distribution and thus the element quality is enhanced by an averaging
+process that tends to choose an equilibrium position between competing
+edges when the front is refined or coarsenend.</font>
+
+</p><p><font size="+1">Delaundo can produce stretched grids and has a multi-grid
+capability that produces a serios of coarsened grid with nested nodes.</font>
+
+</p><p><font size="+1">A few examples. A straightforward triangulation of the
+simple NACA 0012 airfoil with the boundary points from above produces the
+following grid:</font>
+
+</p><p><img src="delaundo_files/large0012.gif" hspace="20" vspace="10" border="2" height="592" width="594" align="middle">
+
+</p><p><img src="delaundo_files/small0012.gif" hspace="20" vspace="10" border="2" height="592" width="594" align="middle">
+
+</p><p><font size="+1">Delaundo has also a rudimentary capability to create grids
+with stretched layers for viscous calculations that works well for moderate
+stretching factors of up to 100. Due to the simple implementation the stretched
+layers must completely wrap around a simply connected body such as an airfoil
+with a wake. It cannot do bump-like cases, where non-stretched boundaries
+are attached to stretched ones. The following example shows the grid around
+a three-element airfoil with a stretching of 1:10.</font>
+
+</p><p><img src="delaundo_files/tea.gif" hspace="20" vspace="10" border="2" height="590" width="591" align="middle">
+</p><center>
+<h3>
+<b><font size="+2">Literature on <tt>ipol </tt>and <tt>delaundo</tt></font></b></h3></center>
+
+<ul>
+<li>
+<font size="+1">J.-D. Müller, ``<i>On Triangles and Flow</i>'', PhD
+Thesis, The University of Michigan, 1996.</font></li>
+
+<li>
+<font size="+1">J.-D. Müller, ``<i>The Advancing Front Method and the
+Delaunay Triangulation</i>'', 24th von Karman Institute Lecture Series
+on Computational Fluid Dynamics, 1994-02, 1994.</font></li>
+
+<li>
+<font size="+1">J.-D. Müller, ``<i>Quality Estimates and Stretched Meshes
+based on Delaunay Triangulations</i>'', AIAA-Journal, Vol. 32, No. 12,
+December 1994.</font></li>
+
+<li>
+<font size="+1">J.-D. Müller, ``<i>Proven Angular Bounds and Stretched
+Triangulations with the Frontal Delaunay Method</i>'', AIAA-93-3347-CP,
+1993.</font></li>
+
+<li>
+<font size="+1">J.-D. Müller, P.L. Roe and H. Deconinck, ``<i>A Frontal
+Approach for Internal Node Generation for Delaunay Triangulations</i>'',
+Int. J. of Num. Meth. in Fluids, Vol. 17, No. 3, pp 241-56, 1993.</font></li>
+
+<li>
+<font size="+1">J.-D. Müller, P.L. Roe and H. Deconinck, ``<i>Delaunay-based
+triangulations for the Navier-Stokes equations with minimum user input'</i>',
+Proceedings of the 13th International Conference on Numerical Modelling
+in Fluid Dynamics, Rome, 1992.</font></li>
+
+<li>
+<font size="+1">J.-D. Müller, P.L. Roe and H. Deconinck, ``<i>A Frontal
+Approach for Node Generation in Delaunay Triangulations</i>'', VKI Lecture
+Series on Unstructured Grid Methods'', AGARD R-787, 1992.</font></li>
+</ul>
+<font size="+1">Delaundo is in the public domain, the latest version 5.4
+can be obtained <a href="http://www.cerfacs.fr/%7Emuller/delaundo.tar.gz">here.</a> The Phd thesis is also
+available in <a href="http://www.cerfacs.fr/%7Emuller/thesis.A4.ps.gz">A4</a> or <a href="http://www.cerfacs.fr/%7Emuller/thesis.US.ps.gz">US-letter</a>
+format (1.7M).</font><font size="+1"></font>
+
+<p><font size="+1">A visualisation program that can deal with delaundo's
+preferred output format .dpl has been written by Darren DeZeeuw of the
+University of Michigan. You can obtain a copy of the source <a href="http://www.cerfacs.fr/%7Emuller/dplot.tar.gz">here</a>,
+but you also need to get a copy of MIT's <a href="http://www.cerfacs.fr/%7Emuller/graficV4.tar.gz">grafic</a>,
+developed mainly by J. Dannenhoffer.</font>
+
+</p><p><font size="+1">Postprocessing of the grids produced by delaundo is done
+with <a href="http://www.cerfacs.fr/%7Emuller/hip.html">hip</a>.</font>
+
+</p><p><font size="+1"><a href="mailto:muller@comlab.ox.ac.uk">Ask questions</a>
+about ipol or delaundo, or return <a href="http://www.cerfacs.fr/%7Emuller/home.html">home</a>.</font>
+</p></body></html>

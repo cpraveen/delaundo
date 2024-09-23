@@ -1,0 +1,40 @@
+
+    This is Delaundo, version 5.4 of 02 April 1997,
+       Welcome to DOMINO Software.
+
+    The following parameters will be used:
+       VERBOSe:
+       3, User.
+       INFILE:
+       test.4pts 
+       NODEUSe:
+       F, User.
+       NODECOnstr.:
+       T, User.
+       ASKROW:
+       F, User.
+       ANTICOnnect.:
+       F, User.
+       SPCRATio:
+         1.00, User.
+       DTOLERance:
+       0.6000, User.
+       QTOLERance:
+       0.6500, User.
+       STRETChing:
+       F, User.
+       MISOROw:
+         1000, User.
+       FLATSWap:
+       F, User.
+       OUTFILe:
+       ./test.dpl 
+       OUTTYPe:
+       t
+       OUTTYPe:
+       d
+       DOLOGFile:
+       T, User.
+       LOGFILe:
+       delaundo.log 
+       ENDDAT: End of the list of control parameters.
