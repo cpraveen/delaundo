@@ -6,7 +6,8 @@ c               Dr. Ismail H. TUNCER
 c                    Fall 2000
 c-------------------------------------------------------------------
       character*30 argi,fn,fni,fno,title
-      dimension node(3,10000),neigh(3,10000),xy(2,10000)
+      parameter(nmax=50000)
+      dimension node(3,nmax),neigh(3,nmax),xy(2,nmax)
       logical ok
 
 c..get the argument list
@@ -27,6 +28,8 @@ c..get the argument list
         stop
       endif
 
+      print*,'Reading file ',trim(fni)
+
       open(1,file=fni,form='formatted')
       read(1,*) title
       read(1,*) ncell,n1,n2
@@ -37,11 +40,16 @@ c..get the argument list
       read(1,*) (xy(1,n),xy(2,n),r1,r2,r3,r4,nc, n=1,nnode)
       close(1)
 
+      print*,'Number of triangles =', ncell
+      print*,'Number of points    =', nnode
+
       open(1,file=fno,form='formatted')
       write(1,100) nnode,ncell
       write(1,101) (xy(1,n),xy(2,n),n=1,nnode)
       write(1,102) (node(1,n),node(2,n),node(3,n),n=1,ncell)
       close(1)
+
+      print*,'Wrote file ',trim(fno)
 
   100 format (' VARIABLES= "X", "Y"'/
      +        ' ZONE N=', I8,' E=', I8,' F=FEPOINT  ET=triangle' )
