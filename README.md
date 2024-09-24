@@ -1,10 +1,12 @@
 # Delaunay grid generator
 
-```
+## Try and example
+
+```shell
 cd src
 make
 cd ../utils
-gfortran dplot2tec.f -o dplot2tec
+make
 cd ../xample
 ../src/delaundo # and then enter naca.ctr and press enter
 ../utils/dplot2tec naca
